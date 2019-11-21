@@ -35,4 +35,8 @@ public class PlacesFrame extends JFrame {
         this.setSize(p.getHeight(), p.getWidth());
         this.setVisible(true);
     }
+    
+    public void deleteFrame(){
+        this.dispose();
+    }
 }

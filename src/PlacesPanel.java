@@ -23,6 +23,7 @@ public class PlacesPanel extends JPanel {
     protected ArrayList<String> selectedPlaces = new ArrayList<>();
     protected int count = 0;
     protected int nbp = 0;
+    protected boolean visible = true;
 
     public PlacesPanel(int nbPlaces) {
         final Icon freeSeat = new ImageIcon("case_vide.jpg");
@@ -39,10 +40,15 @@ public class PlacesPanel extends JPanel {
                 this.repaint();
             }
         }
-
+        if(visible){
         this.setVisible(true);
         this.setSize(40 * ROWS, 40 * COLS);
         this.setLayout(new GridLayout(ROWS, COLS));
+        }
+        else{
+            this.setVisible(false);
+           // Dulceria.setVisible(true);
+        }
     }
 
     private void onClick(Place seat) {
@@ -58,6 +64,8 @@ public class PlacesPanel extends JPanel {
                     for (int j = 0; j < COLS; j++) {
                         if (places[i][j].getState() == States.FREE) {
                             places[i][j].setEnabled(false);
+                            visible = false;
+                            
                         }
                     }
                 }
