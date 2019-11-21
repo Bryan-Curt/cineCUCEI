@@ -1,5 +1,6 @@
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class PlacesPanel extends JPanel {
     private static final int ROWS = 5;
     private static final int COLS = 4;
     protected static Place[][] places;
+    protected ArrayList<String> selectedPlaces = new ArrayList<>();
     protected int count = 0;
     protected int nbp = 0;
 
@@ -49,7 +51,7 @@ public class PlacesPanel extends JPanel {
             seat.setState(States.TAKEN);
             seat.setEnabled(false);
             seat.setDisabledIcon(new ImageIcon("case_bateau.jpg"));
-            System.out.println(nbp);
+            selectedPlaces.add(seat.toString());
             if (count == nbp) {
                 System.out.println("ouioui");
                 for (int i = 0; i < ROWS; i++) {
@@ -59,8 +61,12 @@ public class PlacesPanel extends JPanel {
                         }
                     }
                 }
+                System.out.println(selectedPlaces);
             }
         }
 
+    }
+    private ArrayList getPlaces(){
+        return selectedPlaces;
     }
 }

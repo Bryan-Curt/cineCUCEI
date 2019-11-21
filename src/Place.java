@@ -36,5 +36,8 @@ public class Place extends JButton {
         return e;
     }
 
+    @Override
+    public String toString(){
+        return X + " - " + Y;
+    }
 }
-

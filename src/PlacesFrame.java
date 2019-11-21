@@ -26,14 +26,13 @@ import javax.swing.JPanel;
  *
  * @author bryancurt
  */
-public class PlacesFrame extends javax.swing.JPanel {
+public class PlacesFrame extends JFrame {
 
-    public static void main(String[] arguments) throws IOException {
-        JFrame frame = new JFrame("Peliculas");
+    public PlacesFrame() {
         PlacesPanel p = new PlacesPanel(5);
-        frame.add(p);
-        frame.pack();
-        frame.setSize(p.getHeight(),p.getWidth());
-        frame.setVisible(true);
-    }                
+        this.add(p);
+        this.pack();
+        this.setSize(p.getHeight(), p.getWidth());
+        this.setVisible(true);
+    }
 }
