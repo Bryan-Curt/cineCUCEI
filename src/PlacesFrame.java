@@ -28,8 +28,8 @@ import javax.swing.JPanel;
  */
 public class PlacesFrame extends JFrame {
 
-    public PlacesFrame() {
-        PlacesPanel p = new PlacesPanel(5);
+    public PlacesFrame(int places) {
+        PlacesPanel p = new PlacesPanel(places);
         this.add(p);
         this.pack();
         this.setSize(p.getHeight(), p.getWidth());
