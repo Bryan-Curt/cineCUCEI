@@ -28,7 +28,7 @@ import javax.swing.JPanel;
  */
 public class Jclient extends javax.swing.JPanel implements Runnable{
 
-    public static void main(String[] arguments) throws IOException {
+    public Jclient() throws IOException {
         JFrame frame = new JFrame("Peliculas");
 
         JPanel panel = new JPanel();
