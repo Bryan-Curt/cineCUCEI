@@ -35,6 +35,8 @@ public class ListEmpleados extends javax.swing.JFrame {
      */
     public ListEmpleados() {
     getContentPane().setPreferredSize( Toolkit.getDefaultToolkit().getScreenSize());
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     pack();
     setResizable(false);
     show();

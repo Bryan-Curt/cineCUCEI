@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,8 @@ public class HomeGeneral extends javax.swing.JFrame {
      */
     public HomeGeneral() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -113,7 +117,7 @@ public class HomeGeneral extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            new Jclient().setVisible(true); //lance l'interface client
+            new PeliculaCatalog().setVisible(true); //lance l'interface client
         } catch (IOException ex) {
             Logger.getLogger(HomeGeneral.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,3 +1,12 @@
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +24,8 @@ public class GenererBillet extends javax.swing.JFrame {
      */
     public GenererBillet() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/5, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -34,6 +45,11 @@ public class GenererBillet extends javax.swing.JFrame {
         jButton1.setText("Comprar Dulces");
 
         jButton2.setText("Descargar Boleto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,6 +74,30 @@ public class GenererBillet extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String fileName = "EmptyPdf.pdf";
+    try{
+        PDDocument doc = new PDDocument();
+        PDPage page = new PDPage();
+        doc.addPage(page);
+        PDPageContentStream content = new PDPageContentStream(doc,page);
+        
+        content.beginText();
+        content.setFont(PDType1Font.HELVETICA, 26);
+        content.moveTextPositionByAmount(250, 750);
+        content.drawString("Boleto de cinema");
+        content.endText();
+        
+        content.close();
+        doc.save(fileName);
+        doc.close();
+        
+    }
+    catch (IOException e){
+        System.out.println(e.getMessage());
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,8 +1,10 @@
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -30,9 +32,10 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
 
     public PeliculaCatalog() throws IOException {
         JFrame frame = new JFrame("Peliculas");
-
         JPanel panel = new JPanel();
-
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation((dim.width/2-this.getSize().width/2)/2, (dim.height/2-this.getSize().height/2)/2);
+        
         BufferedImage image = ImageIO.read(new File("src/visual/Forest Gump.jpg"));
         BufferedImage image2 = ImageIO.read(new File("src/visual/Milagros inesperados.jpg"));
         BufferedImage image3 = ImageIO.read(new File("src/visual/Coco.jpg"));

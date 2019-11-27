@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -38,6 +39,8 @@ public class reservarBoleto extends javax.swing.JFrame {
      */
     public reservarBoleto(int film) throws ClassNotFoundException, SQLException, IOException {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         String titulo = "";
         switch(film){
             case 0:

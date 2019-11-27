@@ -26,7 +26,7 @@ public class PlacesPanel extends JPanel {
     protected boolean visible = true;
 
     public PlacesPanel(int nbPlaces) {
-        final Icon freeSeat = new ImageIcon("case_vide.jpg");
+        final Icon freeSeat = new ImageIcon("src/visual/siege_vide.png");
         places = new Place[ROWS][COLS];
         nbp = nbPlaces;
         for (int i = 0; i < ROWS; i++) {
@@ -56,7 +56,7 @@ public class PlacesPanel extends JPanel {
         if (seat.getState() == States.FREE) {
             seat.setState(States.TAKEN);
             seat.setEnabled(false);
-            seat.setDisabledIcon(new ImageIcon("case_bateau.jpg"));
+            seat.setDisabledIcon(new ImageIcon("src/visual/siege_plein.png"));
             selectedPlaces.add(seat.toString());
             if (count == nbp) {
                 System.out.println("ouioui");
@@ -70,6 +70,7 @@ public class PlacesPanel extends JPanel {
                     }
                 }
                 System.out.println(selectedPlaces);
+                new GenererBillet().setVisible(true);
             }
         }
 
