@@ -53,6 +53,27 @@ public class ReservarBoleto extends javax.swing.JFrame {
             case 2:
                 this.titulo = "Coco";
                 break;
+            case 3:
+                this.titulo = "Kimi no Na wa";
+                break;
+            case 4:
+                this.titulo = "Cristiada";
+                break;
+            case 5:
+                this.titulo = "Green Book";
+                break;
+            case 6:
+                this.titulo = "La lista de Schindler";
+                break;
+            case 7:
+                this.titulo = "12 hombres en pugna";
+                break;
+            case 8:
+                this.titulo = "El padrino";
+                break;
+            case 9:
+                this.titulo = "Bohemian Rhapsody";
+                break;
         }
         jLabel15.setBounds(0,200,150,100);
         System.out.println(film);

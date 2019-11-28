@@ -28,17 +28,29 @@ import javax.swing.JPanel;
  *
  * @author bryancurt
  */
-public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
+public class PeliculaCatalog extends javax.swing.JPanel implements Runnable {
 
     public PeliculaCatalog() throws IOException {
         JFrame frame = new JFrame("Peliculas");
-        JPanel panel = new JPanel();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation((dim.width/2-this.getSize().width/2)/2, (dim.height/2-this.getSize().height/2)/2);
         
+        //frame.setSize(1000, 600);
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(1030, 615));
+        frame.pack();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+       // frame.setLocation((dim.width / 2 - this.getSize().width / 2) / 2, (dim.height / 2 - this.getSize().height / 2) / 2);
+
         BufferedImage image = ImageIO.read(new File("src/visual/Forest Gump.jpg"));
         BufferedImage image2 = ImageIO.read(new File("src/visual/Milagros inesperados.jpg"));
         BufferedImage image3 = ImageIO.read(new File("src/visual/Coco.jpg"));
+        BufferedImage image4 = ImageIO.read(new File("src/visual/Kimi no Na wa.jpg"));
+        BufferedImage image5 = ImageIO.read(new File("src/visual/Cristiada.jpg"));
+        BufferedImage image6 = ImageIO.read(new File("src/visual/Green Book.jpg"));
+        BufferedImage image7 = ImageIO.read(new File("src/visual/La lista de Schindler.jpg"));
+        BufferedImage image8 = ImageIO.read(new File("src/visual/12 hombres en pugna.jpg"));
+        BufferedImage image9 = ImageIO.read(new File("src/visual/El padrino.jpg"));
+        BufferedImage image10 = ImageIO.read(new File("src/visual/Bohemian Rhapsody.jpg"));
+
         BufferedImage i = resize(image, 300, 200);
         JLabel label = new JLabel(new ImageIcon(i));
         panel.add(label);
@@ -92,7 +104,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
             @Override
             public void mouseClicked(MouseEvent me) { //coco
                 Point clicked = me.getPoint();
-                Rectangle bounds = new Rectangle(400, 0, i.getWidth(), i.getHeight());
+                Rectangle bounds = new Rectangle(400, 0, i3.getWidth(), i3.getHeight());
                 if (bounds.contains(clicked)) {
                     try {
                         new ReservarBoleto(2).setVisible(true); //lance l'interface de billet
@@ -107,6 +119,179 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
                 }
             }
         });
+
+        BufferedImage i4 = resize(image4, 300, 200);
+        JLabel label4 = new JLabel(new ImageIcon(i4));
+        panel.add(label4);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //your name
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(600, 0, i4.getWidth(), i4.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(3).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
+        BufferedImage i5 = resize(image5, 300, 200);
+        JLabel label5 = new JLabel(new ImageIcon(i5));
+        panel.add(label5);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //Cristeros
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(800, 0, i5.getWidth(), i5.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(4).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
+        BufferedImage i6 = resize(image6, 300, 200);
+        JLabel label6 = new JLabel(new ImageIcon(i6));
+        panel.add(label6);
+        Dimension size6 = label6.getPreferredSize();
+        label6.setBounds(300, 300, size6.width, size6.height);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //Green book
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(0, 300, i6.getWidth(), i6.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(5).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
+                BufferedImage i7 = resize(image7, 300, 200);
+        JLabel label7 = new JLabel(new ImageIcon(i7));
+        
+        Dimension size7 = label7.getPreferredSize();
+        label6.setBounds(300, 300, size7.width, size7.height);
+        panel.add(label7);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //La liste de shindler
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(200, 300, i7.getWidth(), i7.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(6).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
+                BufferedImage i8 = resize(image8, 300, 200);
+        JLabel label8 = new JLabel(new ImageIcon(i8));
+        panel.add(label8);
+        Dimension size8 = label8.getPreferredSize();
+        label8.setBounds(300, 300, size8.width, size8.height);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //12 hommes en colère
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(400, 300, i8.getWidth(), i8.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(7).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
+                BufferedImage i9 = resize(image9, 300, 200);
+        JLabel label9 = new JLabel(new ImageIcon(i9));
+        panel.add(label9);
+        Dimension size9 = label9.getPreferredSize();
+        label9.setBounds(300, 300, size9.width, size9.height);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //Le parrain
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(600, 300, i9.getWidth(), i9.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(8).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
+                BufferedImage i10 = resize(image10, 300, 200);
+        JLabel label10 = new JLabel(new ImageIcon(i10));
+        panel.add(label10);
+        Dimension size10 = label.getPreferredSize();
+        label10.setBounds(300, 300, size10.width, size10.height);
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) { //Bohemian Rapshody
+                Point clicked = me.getPoint();
+                Rectangle bounds = new Rectangle(800, 300, i10.getWidth(), i10.getHeight());
+                if (bounds.contains(clicked)) {
+                    try {
+                        new ReservarBoleto(9).setVisible(true); //lance l'interface de consultation
+                        frame.dispose();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
         // main window
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,7 +301,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
 
         frame.pack();
         frame.setVisible(true);
-        
+
     }
 
     /**

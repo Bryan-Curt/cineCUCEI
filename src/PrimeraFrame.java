@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import sources.LeTrucDeBryan;
 
 /*
@@ -18,6 +20,8 @@ public class PrimeraFrame extends javax.swing.JFrame {
      */
     public PrimeraFrame() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -147,7 +151,7 @@ public class PrimeraFrame extends javax.swing.JFrame {
 
         if (jTextField1.getText().equals("admin")){
             if (jPasswordField1.getText().equals("123456")){
-                new HomeFrame().setVisible(true); //lance l'interface de connexion
+                new HomeGeneral().setVisible(true); //lance l'interface de connexion
                 dispose();
             }
         }
