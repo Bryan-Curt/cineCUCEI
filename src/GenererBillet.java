@@ -1,18 +1,38 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.io.FileInputStream;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.ArrayList;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+//import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
+import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author bryancurt
@@ -22,10 +42,19 @@ public class GenererBillet extends javax.swing.JFrame {
     /**
      * Creates new form GenererBillet
      */
-    public GenererBillet() {
+    protected String film;
+    protected String id;
+    protected String horario;
+    protected ArrayList selectedPlaces;
+
+    public GenererBillet(String film, String id, String horario, ArrayList selectedPlaces) {
         initComponents();
+        this.film = film;
+        this.id = id;
+        this.horario = horario;
+        this.selectedPlaces = selectedPlaces;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/5, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 5, dim.height / 2 - this.getSize().height / 2);
     }
 
     /**
@@ -37,12 +66,18 @@ public class GenererBillet extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSlider2 = new javax.swing.JSlider();
+        jSlider1 = new javax.swing.JSlider();
+        jSlider3 = new javax.swing.JSlider();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("Comprar Dulces");
 
         jButton2.setText("Descargar Boleto");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -51,53 +86,305 @@ public class GenererBillet extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visual/ezgif.com-resize.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visual/ezgif.com-resize copie 2.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visual/ezgif.com-resize copie.png"))); // NOI18N
+
+        jSlider2.setMaximum(20);
+        jSlider2.setValue(0);
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider2StateChanged(evt);
+            }
+        });
+
+        jSlider1.setMaximum(20);
+        jSlider1.setValue(0);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
+        jSlider3.setMaximum(20);
+        jSlider3.setValue(0);
+        jSlider3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider3StateChanged(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel6.setText("0");
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel7.setText("0");
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel8.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(129, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(73, 73, 73)
+                        .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)))
+                .addGap(41, 41, 41))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(37, 37, 37))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String fileName = "EmptyPdf.pdf";
-    try{
-        PDDocument doc = new PDDocument();
-        PDPage page = new PDPage();
-        doc.addPage(page);
-        PDPageContentStream content = new PDPageContentStream(doc,page);
-        
-        content.beginText();
-        content.setFont(PDType1Font.HELVETICA, 26);
-        content.moveTextPositionByAmount(250, 750);
-        content.drawString("Boleto de cinema");
-        content.endText();
-        
-        content.close();
-        doc.save(fileName);
-        doc.close();
-        
-    }
-    catch (IOException e){
-        System.out.println(e.getMessage());
-    }
+        String ID = "";
+        String h = "";
+        String membresia = "";
+        String nombre = "";
+        String apellidos = "";
+        String direccion = "";
+        String telefono = "";
+        String puntos = "";
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost/cine?user=bryancurt&password=123456");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM public.cliente WHERE id_client = ?");
+            stmt.setInt(1, parseInt(id));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ID = this.id;
+                h = this.horario;
+                membresia = rs.getString("membresia");
+                nombre = rs.getString("nombre");
+                apellidos = rs.getString("apellidos");
+                direccion = rs.getString("direccion");
+                telefono = rs.getString("telefono");
+                puntos = rs.getString("puntos");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        String fileName = "boleto_" + nombre + ".pdf";
+        try {
+            PDDocument doc = new PDDocument();
+            PDPage page = new PDPage();
+            doc.addPage(page);
+            PDPageContentStream content = new PDPageContentStream(doc, page);
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 32);
+            content.moveTextPositionByAmount(200, 750);
+            content.drawString("Boleto de cinema");
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(25, 660);
+            content.drawString("Id: #" + ID);
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(25, 630);
+            content.drawString("Nombre: " + nombre);
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(25, 600);
+            content.drawString("Apellidos: " + apellidos);
+            content.endText();
+
+            String member = "";
+            float percent = (float) 0.0;
+
+            if (membresia == "F") {
+                member = "Fanatico";
+                percent = (float) 0.1;
+            } else {
+                member = "SuperFanatico";
+                percent = (float) 0.2;
+            }
+            float precioTotal = selectedPlaces.size() * 50 + Float.parseFloat(jLabel6.getText()) * 30 + Float.parseFloat(jLabel7.getText()) * 30 + Float.parseFloat(jLabel8.getText()) * 50;
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(25, 570);
+            content.drawString("Membresia: " + member + "  | Puntos: " + puntos + "   | + " + Float.parseFloat(puntos + precioTotal * percent));
+            content.endText();
+
+            PDImageXObject pdImage = PDImageXObject.createFromFile("src/visual/" + film + ".jpg", doc);
+            content.drawImage(pdImage, 40, 275, 187, 250);
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 500);
+            content.drawString("Pelicula: " + film);
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 470);
+            content.drawString("Horario: " + horario);
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 440);
+            content.drawString("Numero de personas: " + selectedPlaces.size());
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 410);
+            content.drawString("Sitios numero: ");
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 15);
+            content.moveTextPositionByAmount(275, 380);
+            content.drawString("" + selectedPlaces);
+            content.endText();
+
+            float precioCinema = selectedPlaces.size() * 50;
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 350);
+            content.drawString("Precio cinema: " + precioCinema + " $");
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(275, 320);
+            content.drawString("Nuevo puntos: " + puntos);
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 25);
+            content.moveTextPositionByAmount(50, 230);
+            content.drawString("Dulceria: ");
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(50, 190);
+            content.drawString("(30$) Palomitas: " + jLabel6.getText());
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(50, 160);
+            content.drawString("(50$) Chocolate: " + jLabel8.getText());
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(50, 130);
+            content.drawString("(30$) Refrescos: " + jLabel7.getText());
+            content.endText();
+
+            float dulceriaTotal = Float.parseFloat(jLabel6.getText()) * 30 + Float.parseFloat(jLabel7.getText()) * 30 + Float.parseFloat(jLabel8.getText()) * 50;
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 20);
+            content.moveTextPositionByAmount(50, 100);
+            content.drawString("Precio dulceria: " + dulceriaTotal + " $");
+            content.endText();
+
+            content.beginText();
+            content.setFont(PDType1Font.HELVETICA, 30);
+            content.moveTextPositionByAmount(250, 25);
+            content.drawString("Precio total: " + precioTotal + " pesos");
+            content.endText();
+
+/////close
+            content.close();
+            doc.save(fileName);
+            doc.close();
+
+            Window[] windows = Window.getWindows();
+            for (Window window : windows) {
+                window.dispose();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+        jLabel7.setText(String.valueOf(jSlider2.getValue()));
+    }//GEN-LAST:event_jSlider2StateChanged
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+
+        jLabel6.setText(String.valueOf(jSlider1.getValue()));
+    }//GEN-LAST:event_jSlider1StateChanged
+
+    private void jSlider3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider3StateChanged
+        jLabel8.setText(String.valueOf(jSlider3.getValue()));
+    }//GEN-LAST:event_jSlider3StateChanged
 
     /**
      * @param args the command line arguments
@@ -127,15 +414,22 @@ public class GenererBillet extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GenererBillet().setVisible(true);
-            }
-        });
+    }
+
+    public void infoClient() {
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider jSlider3;
     // End of variables declaration//GEN-END:variables
 }

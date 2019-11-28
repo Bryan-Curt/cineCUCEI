@@ -49,7 +49,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
                 Rectangle bounds = new Rectangle(0, 0, i.getWidth(), i.getHeight());
                 if (bounds.contains(clicked)) {
                     try {
-                        new reservarBoleto(0).setVisible(true); //lance l'interface de consultation
+                        new ReservarBoleto(0).setVisible(true); //lance l'interface de consultation
                         frame.dispose();
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,7 +72,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
                 Rectangle bounds = new Rectangle(200, 0, i2.getWidth(), i2.getHeight());
                 if (bounds.contains(clicked)) {
                     try {
-                        new reservarBoleto(1).setVisible(true); //lance l'interface de consultation
+                        new ReservarBoleto(1).setVisible(true); //lance l'interface de consultation
                         frame.dispose();
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,7 +95,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable{
                 Rectangle bounds = new Rectangle(400, 0, i.getWidth(), i.getHeight());
                 if (bounds.contains(clicked)) {
                     try {
-                        new reservarBoleto(2).setVisible(true); //lance l'interface de billet
+                        new ReservarBoleto(2).setVisible(true); //lance l'interface de billet
                         frame.dispose();
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(PeliculaCatalog.class.getName()).log(Level.SEVERE, null, ex);

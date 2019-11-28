@@ -32,30 +32,31 @@ import javax.swing.JTable;
  *
  * @author bryancurt
  */
-public class reservarBoleto extends javax.swing.JFrame {
+public class ReservarBoleto extends javax.swing.JFrame {
 
     /**
      * Creates new form BreserverBillet
      */
-    public reservarBoleto(int film) throws ClassNotFoundException, SQLException, IOException {
+    protected String titulo;
+    public ReservarBoleto(int film) throws ClassNotFoundException, SQLException, IOException {
         initComponents();
+        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        String titulo = "";
         switch(film){
             case 0:
-                titulo = "Forest Gump";
+                this.titulo = "Forest Gump";
                 break;
             case 1:
-                titulo = "Milagros inesperados";
+                this.titulo = "Milagros inesperados";
                 break;
             case 2:
-                titulo = "Coco";
+                this.titulo = "Coco";
                 break;
         }
         jLabel15.setBounds(0,200,150,100);
         System.out.println(film);
-        ImageIcon MyImage = new ImageIcon ("src/visual/"+titulo+".jpg");
+        ImageIcon MyImage = new ImageIcon ("src/visual/"+this.titulo+".jpg");
         Image img = MyImage.getImage();
         Image newImg = img.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
@@ -324,7 +325,7 @@ public class reservarBoleto extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new PlacesFrame(Integer.parseInt(jComboBox2.getSelectedItem().toString())).setVisible(true);
+        new PlacesFrame(titulo,jTextField1.getText(), (String) jComboBox1.getSelectedItem(),Integer.parseInt(jComboBox2.getSelectedItem().toString())).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -349,14 +350,18 @@ public class reservarBoleto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(reservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(reservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(reservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(reservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservarBoleto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -366,13 +371,13 @@ public class reservarBoleto extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new reservarBoleto(1).setVisible(true);
+                    new ReservarBoleto(1).setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(reservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(reservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(reservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ReservarBoleto.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

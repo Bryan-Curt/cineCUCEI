@@ -22,12 +22,18 @@ public class PlacesPanel extends JPanel {
     protected static Place[][] places;
     protected ArrayList<String> selectedPlaces = new ArrayList<>();
     protected int count = 0;
+    protected String film;
+    protected String id;
+    protected String horario;
     protected int nbp = 0;
     protected boolean visible = true;
 
-    public PlacesPanel(int nbPlaces) {
+    public PlacesPanel(String film, String id, String horario, int nbPlaces) {
         final Icon freeSeat = new ImageIcon("src/visual/siege_vide.png");
         places = new Place[ROWS][COLS];
+        this.film = film;
+        this.id = id;
+        this.horario = horario;
         nbp = nbPlaces;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
@@ -59,7 +65,6 @@ public class PlacesPanel extends JPanel {
             seat.setDisabledIcon(new ImageIcon("src/visual/siege_plein.png"));
             selectedPlaces.add(seat.toString());
             if (count == nbp) {
-                System.out.println("ouioui");
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         if (places[i][j].getState() == States.FREE) {
@@ -69,8 +74,7 @@ public class PlacesPanel extends JPanel {
                         }
                     }
                 }
-                System.out.println(selectedPlaces);
-                new GenererBillet().setVisible(true);
+                new GenererBillet(film,id,horario,selectedPlaces).setVisible(true);
             }
         }
 

@@ -38,6 +38,7 @@ public class Place extends JButton {
 
     @Override
     public String toString(){
-        return X + " - " + Y;
+        String [] alphabet = {"0","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        return ""+X+1+ alphabet[Y+1];
     }
 }
