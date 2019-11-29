@@ -209,7 +209,7 @@ public class ReservarBoleto extends javax.swing.JFrame {
 
         jLabel17.setText("Horario");
 
-        jLabel18.setText("Nombre de boletos");
+        jLabel18.setText("Numero de boletos");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +228,7 @@ public class ReservarBoleto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(jLabel17)
-                        .addGap(59, 59, 59)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel18)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()

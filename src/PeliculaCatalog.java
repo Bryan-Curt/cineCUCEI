@@ -38,7 +38,7 @@ public class PeliculaCatalog extends javax.swing.JPanel implements Runnable {
         panel.setPreferredSize(new Dimension(1030, 615));
         frame.pack();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-       // frame.setLocation((dim.width / 2 - this.getSize().width / 2) / 2, (dim.height / 2 - this.getSize().height / 2) / 2);
+        frame.setLocation(dim.width / 8, dim.height/8);
 
         BufferedImage image = ImageIO.read(new File("src/visual/Forest Gump.jpg"));
         BufferedImage image2 = ImageIO.read(new File("src/visual/Milagros inesperados.jpg"));

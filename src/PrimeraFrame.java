@@ -1,7 +1,14 @@
+//Equipo 6 
+//Curt Bryan Auguste
+//Peregrina Orozco Oscar Leonardo
+//Rios Valdes Luis Antonio
+//Robles Gil Uriel
+//i5890
+//D02
+//2019-B
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import sources.LeTrucDeBryan;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
